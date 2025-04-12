@@ -1,18 +1,17 @@
 const express = require('express');
 const { Pool } = require('pg');
 const app = express();
-
-// Use dynamic port from environment, fallback to 3000 locally
 const port = process.env.PORT || 3000;
 
+// PostgreSQL cloud connection (Render DB)
 const pool = new Pool({
-  user: 'postgres',
-  host: '127.0.0.1',
-  database: 'postgres',
-  password: 'postgres',
-  port: 5433
+  connectionString: 'postgresql://data_connection_db_user:fEEtuiKIlnt8AXGA1Y84pchZUwxOxDGb@dpg-cvtb9kbe5dus73a693h0-a/data_connection_db',
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
+// API endpoint for dropdown options
 app.get('/dropdown-options', async (req, res) => {
   try {
     const result = await pool.query('SELECT id, name FROM public.countries ORDER BY id ASC');
@@ -27,6 +26,7 @@ app.get('/dropdown-options', async (req, res) => {
   }
 });
 
+// Start the server
 app.listen(port, () => {
   console.log(`API running on port ${port}`);
 });
