@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000;
 
 // PostgreSQL cloud connection (Render DB)
 const pool = new Pool({
-  connectionString: 'postgresql://data_connection_db_user:fEEtuiKIlnt8AXGA1Y84pchZUwxOxDGb@dpg-cvtb9kbe5dus73a693h0-a/data_connection_db',
+  connectionString:'postgresql://data_connection_db_user:fEEtuiKIlnt8AXGA1Y84pchZUwxOxDGb@dpg-cvtb9kbe5dus73a693h0-a.oregon-postgres.render.com/data_connection_db',
   ssl: {
     rejectUnauthorized: false
   }
